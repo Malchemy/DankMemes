@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/bwmarrin/discordgo"
+	log "github.com/sirupsen/logrus"
 )
 
 // Add handlers for discord events
@@ -18,17 +18,17 @@ func addHandlers() {
 // This function will be called every time a new guild is joined.
 func onGuildCreate(_ *discordgo.Session, event *discordgo.GuildCreate) {
 	log.Info("Guild create function has ran!")
-/*
-	if event.Guild.Unavailable {
-		return
-	}
-
-	for _, channel := range event.Guild.Channels {
-		if channel.ID == event.Guild.ID {
-			_, _ = discord.ChannelMessageSend(channel.ID, "Airhorn is ready! Type " + PREFIX + "airhorn while in a voice channel to play a sound.")
+	/*
+		if event.Guild.Unavailable {
 			return
 		}
-	}
+
+		for _, channel := range event.Guild.Channels {
+			if channel.ID == event.Guild.ID {
+				_, _ = discord.ChannelMessageSend(channel.ID, "Airhorn is ready! Type " + PREFIX + "airhorn while in a voice channel to play a sound.")
+				return
+			}
+		}
 	*/
 }
 
@@ -40,24 +40,24 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 	// Ignore all messages created by us
 	if m.Author.ID == discord.State.User.ID {
 
-	// Get the channel
+		// Get the channel
 	} else if channel, _ := discord.State.Channel(m.ChannelID); channel == nil {
 		log.WithFields(log.Fields{
 			"channel": m.ChannelID,
 			"message": m.ID,
 		}).Warning("Failed to grab channel")
 
-	// No server, must be a DM
+		// No server, must be a DM
 	} else if channel.GuildID == "" {
 		command(m.Content, m)
 
-	// We are being mentioned
+		// We are being mentioned
 	} else if len(m.Mentions) > 0 {
 		if m.Mentions[0].ID == discord.State.User.ID {
-			command(strings.Trim(strings.Replace(m.ContentWithMentionsReplaced(), "@" + discord.State.User.Username, "", 1), " "), m)
+			command(strings.Trim(strings.Replace(m.ContentWithMentionsReplaced(), "@"+discord.State.User.Username, "", 1), " "), m)
 		}
 
-	// Find the collection for the command we got
+		// Find the collection for the command we got
 	} else if strings.HasPrefix(m.Content, PREFIX) {
 
 		//  Remove prefix and trim spaces then make sure not blank
@@ -79,7 +79,7 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 		sounds := make(chan *Sound, MAX_CHAIN_SIZE)
 		for i, plen := 0, len(parts); i < plen; {
 			var (
-				coll *Collection
+				coll  *Collection
 				sound *Sound
 			)
 
@@ -108,11 +108,11 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 					goto findSound
 				}
 			}
-			dm(m.Author, "Could not find a sound called " + parts[i])
+			dm(m.Author, "Could not find a sound called "+parts[i])
 			return
 
 			// Find a sound
-			findSound:
+		findSound:
 			i++
 			if i < plen {
 				if s := coll.Find(parts[i]); s != nil {
@@ -125,9 +125,9 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 
 			// Add a sound
-			addSound:
+		addSound:
 			if len(sounds) == MAX_CHAIN_SIZE {
-				dm(m.Author, "Only some of the sounds requested will be played. Limit is " + strconv.Itoa(MAX_CHAIN_SIZE) + ".")
+				dm(m.Author, "Only some of the sounds requested will be played. Limit is "+strconv.Itoa(MAX_CHAIN_SIZE)+".")
 				break
 			}
 			if sound != nil {
@@ -140,9 +140,9 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 
 		// Queue
 		(&Play{
-			GuildID: vc.GuildID,
+			GuildID:   vc.GuildID,
 			ChannelID: vc.ID,
-			Sounds: sounds,
+			Sounds:    sounds,
 		}).enqueue()
 	}
 }

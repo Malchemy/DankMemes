@@ -1,8 +1,8 @@
 package main
 
 import (
-	log "github.com/sirupsen/logrus"
 	"github.com/bwmarrin/discordgo"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -25,7 +25,7 @@ func dm(User *discordgo.User, msg string) {
 func userVoiceChannel(GuildID string, User *discordgo.User) *discordgo.Channel {
 	var (
 		channel *discordgo.Channel
-		err string
+		err     string
 	)
 
 	// Find the server
@@ -33,7 +33,7 @@ func userVoiceChannel(GuildID string, User *discordgo.User) *discordgo.Channel {
 	if guild == nil {
 		err = "Failed to grab guild"
 
-	// Grab the users voice channel
+		// Grab the users voice channel
 	} else {
 		for _, vs := range guild.VoiceStates {
 			if vs.UserID == User.ID {

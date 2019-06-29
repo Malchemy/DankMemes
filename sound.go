@@ -4,8 +4,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/jonas747/dca"
 	"github.com/bwmarrin/discordgo"
+	"github.com/jonas747/dca"
 )
 
 // Sound represents a sound clip
@@ -26,14 +26,14 @@ func (s *Sound) Play(vc *discordgo.VoiceConnection) {
 	decoder := dca.NewDecoder(s.File)
 
 	for {
-	    frame, err := decoder.OpusFrame()
-	    if err != nil {
-	        if err != io.EOF {
-	            // Handle the error
-	        }
+		frame, err := decoder.OpusFrame()
+		if err != nil {
+			if err != io.EOF {
+				// Handle the error
+			}
 
-	        break
-	    }
-	    vc.OpusSend <- frame
+			break
+		}
+		vc.OpusSend <- frame
 	}
 }

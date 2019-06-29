@@ -7,9 +7,9 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var commands = map[string]func(m *discordgo.MessageCreate, owner bool) {
+var commands = map[string]func(m *discordgo.MessageCreate, owner bool){
 	"attach": commandAttach,
-	"help": commandHelp,
+	"help":   commandHelp,
 	"reload": commandReload,
 }
 

@@ -8,8 +8,8 @@ import (
 	"syscall"
 	"time"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/bwmarrin/discordgo"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -25,18 +25,19 @@ var (
 	// Owner
 	OWNER string
 )
+
 const (
 
 	// Time delays
-	DELAY_BEFORE_DISCONNECT = time.Millisecond * 250
-	DELAY_BEFORE_SOUND = time.Millisecond * 50
+	delayBeforeDisconnection = time.Millisecond * 200
+	DELAY_BEFORE_SOUND       = time.Millisecond * 50
 	DELAY_BEFORE_SOUND_CHAIN = time.Millisecond * 25
-	DELAY_CHANGE_CHANNEL = time.Millisecond * 250
-	DELAY_JOIN_CHANNEL = time.Millisecond * 175
+	DELAY_CHANGE_CHANNEL     = time.Millisecond * 250
+	DELAY_JOIN_CHANNEL       = time.Millisecond * 100
 
 	// Limits
-	MAX_CHAIN_SIZE = 3
-	MAX_QUEUE_SIZE = 6
+	MAX_CHAIN_SIZE = 5
+	MAX_QUEUE_SIZE = 12
 )
 
 func main() {
@@ -45,7 +46,7 @@ func main() {
 		Shard      = flag.String("s", "", "Shard ID")
 		ShardCount = flag.String("c", "", "Number of shards")
 		Owner      = flag.String("o", "", "Owner ID")
-		Prefix		 = flag.String("p", "", "Prefix for commands")
+		Prefix     = flag.String("p", "", "Prefix for commands")
 		err        error
 	)
 	flag.Parse()

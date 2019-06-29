@@ -16,7 +16,7 @@ import (
 var (
 	fileDirectory = "audio"
 	fileExtension = "dca"
-	fileRegex = regexp.MustCompile("^([a-z]+)_([a-z]+)\\.([a-z0-9]+)$")
+	fileRegex     = regexp.MustCompile("^([a-z]+)_([a-z]+)\\.([a-z0-9]+)$")
 )
 
 // Import from URL
@@ -31,7 +31,7 @@ func importFromURL(url string) error {
 	}
 
 	// Encode the file
-	encodingSession, err := dca.EncodeFile(url, dca.StdEncodeOptions);
+	encodingSession, err := dca.EncodeFile(url, dca.StdEncodeOptions)
 	if err != nil {
 		log.Info("Failed creating an encoding session: ", err)
 		return errors.New("Could not encode file")
@@ -39,7 +39,7 @@ func importFromURL(url string) error {
 	defer encodingSession.Cleanup()
 
 	// Create the file
-	output, err := os.Create(path.Join(fileDirectory, m[1] + "_" + m[2] + "." + fileExtension));
+	output, err := os.Create(path.Join(fileDirectory, m[1]+"_"+m[2]+"."+fileExtension))
 	if err != nil {
 		log.Info(err)
 		return errors.New("Could not create file")
@@ -50,7 +50,6 @@ func importFromURL(url string) error {
 	load()
 	return nil
 }
-
 
 // Load collections and sounds from file
 func load() {
@@ -84,7 +83,7 @@ func load() {
 			// Create and append the collection
 			if collection == nil || collection.Name != m[1] {
 				collection = &Collection{
-					Name: m[1],
+					Name:   m[1],
 					Sounds: []*Sound{},
 				}
 				COLLECTIONS = append(COLLECTIONS, collection)
@@ -97,7 +96,7 @@ func load() {
 			})
 
 			// Append sound name to RANDOM
-			RANDOM = append(RANDOM, m[1] + " " + m[2])
+			RANDOM = append(RANDOM, m[1]+" "+m[2])
 		}
 	}
 }

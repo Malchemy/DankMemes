@@ -1,8 +1,8 @@
 package main
 
 type Collection struct {
-	Name    string
-	Sounds    []*Sound
+	Name   string
+	Sounds []*Sound
 }
 
 // Find a sound by name in the collection

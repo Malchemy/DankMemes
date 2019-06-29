@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/bwmarrin/discordgo"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -45,7 +45,7 @@ func (p *Play) play(vc *discordgo.VoiceConnection) {
 		time.Sleep(DELAY_JOIN_CHANNEL)
 		vc, err = discord.ChannelVoiceJoin(p.GuildID, p.ChannelID, false, false)
 
-	// Change channel
+		// Change channel
 	} else if vc.ChannelID != p.ChannelID {
 		time.Sleep(DELAY_CHANGE_CHANNEL)
 		err = vc.ChangeChannel(p.ChannelID, false, false)
@@ -54,11 +54,11 @@ func (p *Play) play(vc *discordgo.VoiceConnection) {
 	// Error
 	if err != nil {
 		log.WithFields(log.Fields{
-			"play": p,
+			"play":  p,
 			"error": err,
 		}).Error("Failed to play sound")
 
-	// Play the sound
+		// Play the sound
 	} else {
 		time.Sleep(DELAY_BEFORE_SOUND)
 		for sound := range p.Sounds {
@@ -84,7 +84,7 @@ func (p *Play) play(vc *discordgo.VoiceConnection) {
 	if len(queues[p.GuildID]) > 0 {
 		defer (<-queues[p.GuildID]).play(vc)
 
-	// Delete the queue
+		// Delete the queue
 	} else {
 		delete(queues, p.GuildID)
 	}
