@@ -29,7 +29,7 @@ var (
 const (
 
 	// Time delays
-	delayBeforeDisconnection = time.Millisecond * 200
+	DELAY_BEFORE_DISCONNECTION = time.Millisecond * 200
 	DELAY_BEFORE_SOUND       = time.Millisecond * 50
 	DELAY_BEFORE_SOUND_CHAIN = time.Millisecond * 25
 	DELAY_CHANGE_CHANNEL     = time.Millisecond * 250
