@@ -9,7 +9,7 @@ import (
 	"path"
 	"regexp"
 
-	"github.com/jonas747/dca"
+	"github.com/Malchemy/dca"
 	log "github.com/sirupsen/logrus"
 )
 
