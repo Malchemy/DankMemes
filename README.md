@@ -1,3 +1,6 @@
+This is still working just fine as of 10/25/2019, you may have to run "go get -u github.com/Malchemy/airhornbot" to update the dependencies (mainly discordgo) and recompile via "go install"
+
+
 ## Usage
 Use `!airhorn` command to play classic airhorns.
 
