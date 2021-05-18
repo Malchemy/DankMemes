@@ -7,8 +7,8 @@ Use `!airhorn` command to play classic airhorns.
 #### Install the bot:
 Like on a server or maybe a pi if you're cool enough. Grab it and compile that sucker.
 ```
-go get github.com/Malchemy/airhornbot
-go install github.com/Malchemy/airhornbot
+go get github.com/Malchemy/DankMemes
+go install github.com/Malchemy/DankMemes
 ```
 #### Startup:
 Go to the root of the bot folder, i.e., `../github.com/Malchemy/airhornbot/`
