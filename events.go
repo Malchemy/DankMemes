@@ -149,5 +149,5 @@ func onMessageCreate(_ *discordgo.Session, m *discordgo.MessageCreate) {
 
 func onReady(_ *discordgo.Session, event *discordgo.Ready) {
 	log.Info("Recieved READY payload")
-	discord.UpdateStatus(0, "sounds")
+	discord.UpdateGameStatus(0, "sounds")
 }
