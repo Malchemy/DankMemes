@@ -2,7 +2,7 @@
 
 
 ## Usage
-Use `!airhorn` command to play classic airhorns.
+Use `\`airhorn` command to play classic airhorns.
 
 #### Install the bot:
 Like on a server or maybe a pi if you're cool enough. Grab it and compile that sucker.
