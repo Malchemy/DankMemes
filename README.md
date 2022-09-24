@@ -1,4 +1,4 @@
-**This is still working just fine as of 10/25/2019, you may have to run "go get -u github.com/Malchemy/airhornbot" to update the dependencies (mainly discordgo) and recompile via "go install"**
+**This is still working just fine as of 10/25/2019, you may have to run "go get -u github.com/Malchemy/DankMemes" to update the dependencies (mainly discordgo) and recompile via "go install"**
 
 
 ## Usage
@@ -11,7 +11,7 @@ go get github.com/Malchemy/DankMemes
 go install github.com/Malchemy/DankMemes
 ```
 #### Startup:
-Go to the root of the bot folder, i.e., `../github.com/Malchemy/airhornbot/`
+Go to the root of the bot folder, i.e., `../github.com/Malchemy/DankMemes/`
 Before you do this make sure GOPATH environment variable set correctly.
 ```
 /.$GOPATH/bin/airhornbot -t "MY_BOT_ACCOUNT_TOKEN" -o OWNER_ID
